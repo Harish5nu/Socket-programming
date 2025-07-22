@@ -4,19 +4,19 @@
 This is a **basic client-server chat system** built using Python socket programming and threading.
 
 ## 📁 Files
-- `chat_server.py` – Run this to start the server
-- `chat_client.py` – Run this to start the client
+- `socket-server.py` – Run this to start the server
+- `socket-client.py` – Run this to start the client
 
 ## 🚀 How to Use
 
-1. Run `chat_server.py` in one terminal:
+1. Run `socket-server.py` in one terminal:
    ```bash
-   python chat_server.py
+   python socket-server.py
    ```
 
-2. Run `chat_client.py` in another terminal:
+2. Run `socket-client.py` in another terminal:
    ```bash
-   python chat_client.py
+   python socket-client.py
    ```
 
 3. Start chatting between server and client!
@@ -29,4 +29,4 @@ This is a **basic client-server chat system** built using Python socket programm
 - Uses multithreading for send/receive
 
 ## 📝 Author
-Harish Saud (Sanu) 💻
+Harish Saud 💻
