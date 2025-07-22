@@ -1,26 +1,36 @@
 import socket
+import threading
 
-# Create socket
-server_socket = socket.socket()
+# Function to receive messages from the client
+def receive_messages(conn):
+    while True:
+        try:
+            # Receive message from client
+            message = conn.recv(1024).decode()
+            if message:
+                print("Client:", message)
+        except:
+            print("Client disconnected.")
+            break
+
+# Create a server socket
+server_socket = socket.socket()  # Default: AF_INET, SOCK_STREAM
 host = 'localhost'
 port = 12345
 
-# Bind the socket to a port
+# Bind the socket to address and port
 server_socket.bind((host, port))
-server_socket.listen(1)
+server_socket.listen(1)  # Accept 1 connection at a time
+print("Server is waiting for a client to connect...")
 
-print("Server is waiting for a connection...")
-
-# Accept a client connection
+# Accept connection from client
 conn, addr = server_socket.accept()
-print("Connected with:", addr)
+print("Connected to client at:", addr)
 
-# Receive message from client
-data = conn.recv(1024).decode()
-print("Client says:", data)
+# Start a thread to receive messages from client
+threading.Thread(target=receive_messages, args=(conn,)).start()
 
-# Send a reply
-conn.send("Hello from server!".encode())
-
-# Close connection
-conn.close()
+# Main loop to send messages to client
+while True:
+    msg = input("You: ")
+    conn.send(msg.encode())  # Send encoded message to client
